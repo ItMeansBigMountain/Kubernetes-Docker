@@ -1,3 +1,16 @@
+- Mongo cluster
+    - configMap / secrets
+    - mongo databse deployment & service (mongodb)
+    - mongo databse admin deployment & service (mongo-express)
+
+    - - this allows us to interact with mongoDB within a cluser enviroment
+    - - MINICUBE
+        - write: ' minikube service SERVICE_NAME '
+    
+
+
+    
+
 # Kubernetes Commands
 
 ## install hyperhit and minikube (mac) 
@@ -52,3 +65,49 @@
 
 ## Metrics
 - kubectl top:  The kubectl top command returns current CPU and memory usage for a cluster’s pods or nodes, or for a particular pod or node if specified.
+
+
+
+
+
+
+# CONFIGURATION FILES
+- There are multiple config files 
+    - each component needs a config file
+
+## yaml sections
+- Kind (type of component)
+- Metadata
+    - name
+    - labels
+- Spec
+    - replicas (load balance)
+    - selector (app label)
+    - Templates (pods)
+        spec (each pod container has specs for its vm)
+            - port config
+
+
+
+
+
+## secrets.yaml
+- VALUES MUST BE BASE 64 ENCODED
+    - write: 'echo -n "secret string" | base64'
+    - paste that output into secrets.yaml key pair, value
+
+
+
+
+## setting up service.yaml
+- Internal
+    - no need to identify type
+    - match the ports of container and service
+
+- External
+    - identify type as LoadBalancer
+    
+    - MINICUBE
+        - minikube service SERVICE_NAME
+
+

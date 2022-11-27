@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+
+  # PODSs
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - name: mongodb-deployment
+          image: mongo
+
+          # MATCH SERVICE PORT
+          ports:
+            - containerPort: 27017
+
+          # ENVIROMENT VARIABLES
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-root-username
+
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-root-password
+
+          # RESOURCE LIMITATIONS
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "0.5"
+            requests:
+              memory: 256Mi
+              cpu: "0.5"
