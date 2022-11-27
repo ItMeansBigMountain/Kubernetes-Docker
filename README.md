@@ -70,7 +70,6 @@
 
 
 
-
 # CONFIGURATION FILES
 - There are multiple config files 
     - each component needs a config file
