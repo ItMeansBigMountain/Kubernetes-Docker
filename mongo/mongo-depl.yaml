@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongo-deployment
+  namespace: affans-cluster
   labels:
     app: mongodb
 spec:
@@ -10,7 +11,7 @@ spec:
     matchLabels:
       app: mongodb
 
-  # PODSs
+  # PODS
   template:
     metadata:
       labels:

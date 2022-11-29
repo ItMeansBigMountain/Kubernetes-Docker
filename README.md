@@ -9,6 +9,29 @@
     
 
 
+# KUBERNETES CLI TOOLS
+- kubectl
+    - standard command-line tool for Kubernetes, you can perform all the operations of Kubernetes that are required.
+
+- kubectx
+    - multi cluster hopping tool
+
+- kubens
+    - multi component namespace tool
+
+
+- helm 
+    - kubernetes package manager
+        - download pre configured clusters
+    
+    - Templating Engine
+        - ability to set variables in template {context}
+            - use context variables in component configuration file
+
+
+
+
+
     
 
 # Kubernetes Commands
@@ -67,12 +90,47 @@
 - kubectl top:  The kubectl top command returns current CPU and memory usage for a cluster’s pods or nodes, or for a particular pod or node if specified.
 
 
+## minicube ingress
+- 'minikube addons enable ingress'
+
+
+
+## display all namespaces
+- kubens 
+    - make sure to have kubectx installed
+
+- kubectl get ns 
+
+
+
+## display resources with custom namespace
+- kubectl api-resources --namespaced=true
+- kubectl api-resources --namespaced=false
+
+
+## Active namespace
+- kubectl config set-context --current --namespace=NAMESPACE
+- kubens NAMESPACE
+
 
 
 
 # CONFIGURATION FILES
+
+config files are for components to deploy onto the cluster... 
+kind = component type
+
 - There are multiple config files 
     - each component needs a config file
+
+### namespace
+- components can have namespaces to group them up with one another to make groups within the cluster
+- add namespace as key in config.yaml file
+
+
+
+
+
 
 ## yaml sections
 - Kind (type of component)
@@ -110,3 +168,8 @@
         - minikube service SERVICE_NAME
 
 
+
+
+## ingress
+- use third-party implementation to make an "ingress controller pod" and attatch to the apps ingress
+    - write:  'minikube addons enable ingress'
