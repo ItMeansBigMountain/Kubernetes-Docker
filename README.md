@@ -1,3 +1,7 @@
+helper.py will scan dir for files with kubernetes component naming convention... sort them in order from external components to internals... run apply command to files in order
+
+
+
 # KUBERNETES CLI TOOLS
 - kubectl
     - standard command-line tool for Kubernetes, you can perform all the operations of Kubernetes that are required.
