@@ -1,0 +1,54 @@
+# WEB CLIENT POD
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webApp-deployment
+  namespace: learning
+  labels:
+    app: webApp
+
+# SPECIFICATIONS
+spec:
+  replicas: 1
+
+  # MATCHING ALL LABELS TO CREATE THESE PODS
+  selector:
+    matchLabels:
+      app: webApp
+
+  # POD
+  template:
+    metadata:
+      labels:
+        app: webApp
+    spec:
+      containers:
+        - name: webApp
+          image: nanajanashia/k8s-demo-app:v1.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+          
+          
+          # CREATE ENV VARIABLES
+          # DIFFERENT IMAGES FROM THE HUB ARE KNOWN TO HAVE ENV VARIABLES THAT ALLOW THEIR USECASE TO RUN
+          env:
+            - name: USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-user
+            - name: USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-password
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-config
+                  key: mongo-password

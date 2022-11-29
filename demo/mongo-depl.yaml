@@ -1,0 +1,49 @@
+# DATABASE POD
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  namespace: learning
+  labels:
+    app: mongo
+
+# SPECIFICATIONS
+spec:
+  replicas: 1
+
+  # MATCHING ALL LABELS TO CREATE THESE PODS
+  selector:
+    matchLabels:
+      app: mongo
+
+  # POD
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo:5.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 27017
+          
+          # CREATE ENV VARIABLES
+            # DIFFERENT IMAGES FROM THE HUB ARE KNOWN TO HAVE ENV VARIABLES THAT ALLOW THEIR USECASE TO RUN
+          env:
+            - name:  MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-user
+            - name:  MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-password

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+  namespace: learning
+  labels:
+    app: mongo
+data:
+  # values
+  mongo-url: mongo-service

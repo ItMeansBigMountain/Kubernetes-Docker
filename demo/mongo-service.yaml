@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+  namespace: learning
+  labels:
+    app: mongo
+
+# SPECIFICATIONS
+spec:
+  type: NodePort
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      # request comes into cluster on 27017
+      port: 27017
+
+      # route to database container open port 27017
+      targetPort: 27017
