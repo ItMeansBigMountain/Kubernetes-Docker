@@ -8,7 +8,9 @@
     - mongo databse admin deployment & service (mongo-express)
 
         - this allows us to interact with mongoDB within a cluser enviroment
-        - MINICUBE
-            - write: ' minikube service SERVICE_NAME '
+        
+        
+    - MINICUBE (start external ip)
+        - write: ' minikube service SERVICE_NAME '
         
 
