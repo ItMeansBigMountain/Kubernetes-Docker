@@ -25,8 +25,15 @@
 - create secrets and config files
 - create deployments of pods
 - create their services (internal & external)
-- apply all
-    - " kubectl apply -f CONFIG_FILE.yaml "
+
+- apply all 
+    - apply namespace 
+    - apply configMap 
+    - apply secrets 
+    - apply deployment
+    - apply service
+    - apply ingress
+
 
 
 

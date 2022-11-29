@@ -3,10 +3,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webApp-deployment
+  name: webapp-deployment
   namespace: learning
   labels:
-    app: webApp
+    app: webapp
 
 # SPECIFICATIONS
 spec:
@@ -15,16 +15,16 @@ spec:
   # MATCHING ALL LABELS TO CREATE THESE PODS
   selector:
     matchLabels:
-      app: webApp
+      app: webapp
 
   # POD
   template:
     metadata:
       labels:
-        app: webApp
+        app: webapp
     spec:
       containers:
-        - name: webApp
+        - name: webapp
           image: nanajanashia/k8s-demo-app:v1.0
           resources:
             limits:
@@ -51,4 +51,4 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: mongo-config
-                  key: mongo-password
+                  key: mongo-url
