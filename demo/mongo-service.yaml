@@ -14,7 +14,7 @@ spec:
   ports:
     - protocol: TCP
       # request comes into cluster on 27017
-      port: 27017
+      port: 27018
 
       # route to database container open port 27017
-      targetPort: 27017
+      targetPort: 27018

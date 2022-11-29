@@ -15,11 +15,11 @@ spec:
     app: webapp
   ports:
     - protocol: TCP
-      # request comes into cluster on 27017
+      # request comes into cluster on 3000
       port: 3000
 
-      # route to database container open port 27017
+      # route to database container open port 3000
       targetPort: 3000
 
       # open on kubernetes nodes to which app is accessable
-      nodePort: 30001
+      nodePort: 30100

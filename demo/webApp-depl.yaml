@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: nanajanashia/k8s-demo-app:v1.0
+          image: nanajanashia/k8s-demo-app
           resources:
             limits:
               memory: "128Mi"
