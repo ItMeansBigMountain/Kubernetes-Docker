@@ -20,8 +20,17 @@
 
 
 
+# STEPS TO DEPLOY CLUSTER
+- create cluster 
+- create secrets and config files
+- create deployments of pods
+- create their services (internal & external)
+- apply all
+    - " kubectl apply -f CONFIG_FILE.yaml "
 
-    
+
+
+
 
 # Kubernetes Commands
 
