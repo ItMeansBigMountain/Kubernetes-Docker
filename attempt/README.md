@@ -1,4 +1,8 @@
-# steps
+# make a cluster steps
+- ...
+
+
+# make a container steps
 - Have a fully running application
 
 - build image
