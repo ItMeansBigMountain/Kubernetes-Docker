@@ -1,0 +1,67 @@
+### API KEYS ARE STRIPPED AND PLEASE MAKE SURE TO LOOK IN  fetch_meme(text0 , text1) TO CHANGE USERNAME AND PASS
+
+- CREATE CONFIG.PY AND FILL OUT FIELDS LISTED BELOW
+    - watson_api_key = ""
+    - watson_url = ""
+    - spotify_clientId = ""
+    - spotify_clientSecret = ""
+    - genius_clientId = ""
+    - genius_clientsECRET = ""
+    - spotify_callbackURL = ""
+    - genius_callbackURL = ""
+    - meme_username = ""
+    - meme_password = ""
+
+
+
+
+Refer to notes for tasks
+
+    -git will not be logged in so youll need to either scp or open the git repo for download
+    -make sure you are sudo while doing all of this
+    -make sure no python apps are running 
+    -set enviroment variables and then source them
+
+
+    -NOTES FOR REDEPLOYMENT AFTER UPDATES: 
+        RUN "cd ~"
+        RUN "source .bash_profile"
+        ** this will re enstate enviroment variables
+
+
+
+
+
+SSH
+    the ssh service needs to be open and port specified , default is 22
+    - ssh  [USERNAME]@<ip address>
+
+AWS SSH <connect>
+    make sure you have an instance with aws 
+    create keyys file.pem
+    - ssh -i "KEYS.pem" USERNAME@<ip address>
+
+AWS SSH <send files>
+    Folder --> scp -i "oyama.pem" -r FOLDER_NAME <AWS IP>:~
+    File --> scp -i "oyama.pem" FILE_NAME <AWS IP>:~
+
+UBUNTU KILL PROGRAMS RUNNING
+    LIST ALL APPS RUNNING
+        ps -fA
+            SEARCH (look for pid to kill)
+                ps -fA | grep python
+        
+    KILL 
+        kill PID
+
+SETTING UP SHELL ENVIROMENT VARIABLES
+    cd ~                           -go to home dir
+    nano .bash_profile             -edit the bash profile that will set variables per instance
+    export VARIABLE="VALUE"        -set variables in file
+    source .bash_profile           -source hidden variables per instance
+
+
+
+
+
+use pm2 or apache to host

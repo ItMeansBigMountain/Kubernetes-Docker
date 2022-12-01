@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We are listening...</title>
+
+
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+    <style>
+        body {
+            background: url("https://images.unsplash.com/photo-1559533077-4dc3e9bd43f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80") no-repeat center center fixed;
+            background-color: black;
+        }
+
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Roboto", sans-serif
+        }
+    </style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/556f844f3f.js" crossorigin="anonymous"></script>
+
+
+
+</head>
+
+
+
+
+
+<body>
+    <div class="container">
+
+        <div class="d-flex justify-content-center h-100">
+
+
+
+            <div class="card">
+                <div class="card-header">
+
+                    <h1>
+                        SPOTTY AI 
+                    </h1>
+
+
+                    <div style="color: rgb(128, 6, 6);">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <a>{{ message }}</a><br>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="card-body">
+
+
+                    <a href="{{content.refreshable_url}}">
+                        <button class="btn btn-success btn-lg active">
+                            Login Using Spotify & Genius
+                        </button>
+                    </a>
+
+
+                    <!-- <form action="/login" method="POST">
+						
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="log-email" class="form-control" placeholder="Email">
+
+						</div>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="log-pw" class="form-control" placeholder="password">
+						</div>
+
+						<div class="form-group">
+							<input type="submit" value="Login" class="btn float-right login_btn">
+						</div>
+					</form> -->
+
+                <br>
+                <div class="card-text"  >
+                    <!-- DISCLAIMER -->
+                    Welcome!
+                    <br>
+                    This website requires the user to log into Spotify to analyze playlists.
+                    <br>
+                    Genius is also used in order to obtain lyrics for text sentiment alaysis.
+                    <br>
+                    Please log into these outlets in order to use this application.
+                    <br>
+                    <b> We will NOT use your personal data for marketing purposes. </b>
+                </div>
+
+
+                </div>
+                <div class="card-footer">
+
+                    <footer class="w3-container w3-black w3-center w3-margin-top">
+                        <p>Find me on social media.</p>
+                        <a href="" target="_blank">
+                            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                        </a>
+                        <a href="https://instagram.com/_trapistan" target="_blank">
+                            <i class="fa fa-instagram w3-hover-opacity"></i>
+                        </a>
+                        <a href="" target="_blank">
+                            <i class="fa fa-snapchat w3-hover-opacity"></i>
+                        </a>
+                        <a href="https://www.twitter.com/nehauri" target="_blank">
+                            <i class="fa fa-twitter w3-hover-opacity"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/affan-fareed-9b601873/" target="_blank">
+                            <i class="fa fa-linkedin w3-hover-opacity"></i>
+                        </a>
+                        <p>Oyama Productions</p>
+                    </footer>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</body>
+
+
+
+
+
+</html>

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %} {{display_data['username']}}'s Albums {% endblock %}
+
+
+
+
+
+{% block content %}
+
+<br><br>
+
+
+{% for n in range( display_data|length -1 ) %}
+
+<div class="container bcontent">
+    <div class="card" style="width: 500px;">
+        <div class="row no-gutters">
+            <div class="col-sm-5">
+                <!-- image  -->
+                <a href="">
+                    <img class="card-img" src="{{display_data[n]['pictures'][0]['url'] }}" alt="No Image Available">
+                </a>
+            </div>
+            <div class="col-sm-7">
+                <!-- body -->
+                <div class="card-body">
+                    <!-- might need if statment to split album from playlist -->
+                    <form action="indivisual-playlist-analysis" method="post">
+                        <h5 class="card-title">{{display_data[n]['name'] }}</h5>
+                        <hr />
+                        <p class="card-text">Popularity : {{display_data[n]['popularity'] }}</p>
+                        <p class="card-text">Amount : {{display_data[n]['amount'] }}</p>
+                        {%if "release_date" in display_data[n] %}
+                        <p class="card-text">Release Date : {{display_data[n]['release_date'] }}</p>
+                        {%endif%}
+
+                        <!-- hidden inputs and button to submit analysis form -->
+                        <input name="music_group_id" type="hidden" value="{{ display_data[n]['id'] }}">
+                        <input name="group_name" type="hidden" value="{{display_data[n]['name']}}">
+                        <input name="songs[]" type="hidden" value="{{display_data[n]['songs']}}">
+                        <input type="submit" value="Scan Music Group" class="btn btn-primary">
+
+                        <a href="{{display_data[n]['spotify_page']}}" target="_blank" class="btn btn-success">
+                            Spotify Page
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+{%endfor%}
+
+
+
+
+
+{% endblock %}

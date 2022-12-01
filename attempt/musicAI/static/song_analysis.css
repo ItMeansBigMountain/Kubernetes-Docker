@@ -1,0 +1,6 @@
+@media ( max-width: 500px ) { 
+    html {
+    padding-top: 20px;
+    padding-left: 100px;
+    }
+  }

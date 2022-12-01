@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}{{context.username}}{% endblock %}
+
+
+{% block html_head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    html,
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Roboto", sans-serif
+    }
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third">
+
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+                    <img src="{{context.meme}}" style="width:100%" alt="THIS IS A TRAP!">
+
+                    <br><br><br><br>
+
+                    <div class="w3-display-bottomleft w3-container w3-text-black">
+                        <h2>{{context.username}}</h2>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- left side info -->
+                <div class="w3-container">
+
+
+                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{context.email}}
+                    </p>
+
+
+                    <!-- extra items with icons in info panel -->
+                    <!-- <p>
+                            <i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>
+                            Designer
+                        </p>
+                        <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>
+                        <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>
+                         -->
+
+                    <hr>
+
+
+                    <!-- one item in the Bottom div -->
+                    <p class="w3-large"><b><i class="fab fa-terminal fa-fw w3-margin-right w3-text-teal"></i>Skills</b>
+                    </p>
+                    <p>Power Level</p>
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:98%">9001*</div>
+                    </div>
+
+                    <br><br>
+
+                    <!-- HIDDEN LOADER -->
+                    <div id="LoaderDiv" style="display:none" class="loader"></div>
+
+                </div>
+
+
+
+
+
+            </div><br>
+
+            <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-twothird">
+
+
+            <!-- right side top div -->
+            <div class="w3-container w3-card w3-white w3-margin-bottom">
+
+                <h2 class="w3-text-grey w3-padding-16">
+                    <!-- <i class="fab fa-code fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i> -->
+                    <i class="fab fa-spotify"></i>
+                    User Profile
+                </h2>
+
+
+
+
+
+                <!-- one item in div -->
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>Usage</b></h5>
+
+                    <h6 class="w3-text-teal">
+                        <i class="fa fa-calendar fa-fw w3-margin-right"></i>
+                        <!-- DOCUMENT HOW MANY SONGS THEY REQUEST IN THEIR SESSIONS -->
+                        Songs Searched: <span class="w3-tag w3-teal w3-round">{{context.amount_analyzed}}</span>
+                    </h6>
+
+                    <!-- <p>
+                        WE GOT BANDZ
+                    </p> -->
+
+
+                    </p>
+                </div>
+
+
+                <hr>
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <!-- right side bottom container -->
+            <div class="w3-container w3-card w3-white">
+
+                <h2 class="w3-text-grey w3-padding-16">
+                    <i class="fas fa-database fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+                    <!-- <i class="fas fa-database"></i> -->
+                    AI Options
+                </h2>
+
+
+                <!-- one item in the div -->
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>Search a song</b></h5>
+                    <h6 class="w3-text-teal">
+                        <i class="fas fa-music fa-fw w3-margin-right"></i>
+                        <!-- <i class="fas fa-music"></i> -->
+                        <a href="/search-form"><button class="btn btn-secondary">Search Here!</button></a>
+                    </h6>
+                    <p>Get stats for a specific song!</p>
+                </div>
+
+
+                <hr>
+
+
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>Album Statistics</b></h5>
+                    <h6 class="w3-text-teal">
+                        <i class="fas fa-compact-disc fa-fw w3-margin-right"></i>
+                        <!-- <i class="fas fa-music"></i> -->
+                        <a href="/album-analysis" onclick="loaderFunction()"><button class="btn btn-secondary">Full
+                                Scan!</button></a>
+                        <a href="/indivisual-album-display" onclick="loaderFunction()"><button class="btn btn-warning">Indivisual
+                                Album</button></a>
+                    </h6>
+                    <p>Get stats for all saved albums!</p>
+                </div>
+
+
+
+                <hr>
+
+
+
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>Playlsit Statistics</b></h5>
+                    <h6 class="w3-text-teal">
+                        <i class="fab fa-playstation fa-fw w3-margin-right"></i>
+                        <!-- <i class="fab fa-playstation"></i> -->
+                        <a href="/playlist-analysis" onclick="loaderFunction()"><button class="btn btn-secondary">Full
+                                Scan!</button></a>
+                        <a href="/indivisual-playlist-display" onclick="loaderFunction()"><button class="btn btn-warning">Indivisual
+                                Playlist</button></a>
+                    </h6>
+                    <p>Get stats for all saved playlists!</p>
+                </div>
+
+
+
+                <hr>
+
+
+
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>Saved Songs Statistics</b></h5>
+                    <h6 class="w3-text-teal">
+                        <i class="fas fa-heart fa-fw w3-margin-right"></i>
+                        <!-- <i class="fab fa-playstation"></i> -->
+                        <a href="/liked-analysis" onclick="loaderFunction()"><button
+                                class="btn btn-secondary">Scan!</button></a>
+                    </h6>
+                    <p>Get stats for liked songs! </p><br>
+                </div>
+
+
+
+
+
+            </div>
+
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>
+{% endblock %}

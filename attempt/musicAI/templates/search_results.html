@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Results!{% endblock %}
+
+
+{% block content %}
+
+
+
+<!-- NO RESULTS FOUND -->
+<!-- {% if content.tracks[0] is not defined %}
+    No Songs Found...
+    {% endif %}
+    {% if content.artists[0] is not defined %}
+    No Artists Found
+    {% endif %} -->
+
+
+
+
+<!-- DISPLAY TRACKS -->
+{% for x in content.tracks %}
+<br>
+
+
+<div class="container bcontent">
+    <div class="card" style="width: 500px;">
+        <div class="row no-gutters">
+            <div class="col-sm-5">
+                <!-- image  -->
+                <a href="">
+                    <img class="card-img" src="{{x['thumbnail']}}" alt="No Image Available">
+                </a>
+            </div>
+            <div class="col-sm-7">
+                <!-- body -->
+                <div class="card-body">
+                    <form action="song-analysis" method="post">
+
+                        <h5 class="card-title">{{x['name']}}</h5>
+                        <hr />
+                        <p class="card-text">Popularity : {{x['popularity']}} </p>
+
+                        <!-- hidden inputs and button to submit analysis form -->
+                        <input name="analysis_id" type="hidden" value="{{x['id']}}">
+                        <input name="song_name" type="hidden" value="{{x['name']}}">
+                        <input name="song_artist_name" type="hidden" value="{{x['artists'][0]['name']}}">
+                        <input type="submit" value="AI Analysis" class="btn btn-primary">
+
+                        <a href="https://open.spotify.com/track/{{x['id']}}" target="_blank" class="btn btn-success">
+                            Spotify Page
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<hr>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- DISPLAY ARTISTS -->
+{% for x in content.artists %}
+<br>
+<h1>{{x['name']}}</h1>
+<h2>Followers: {{x['followers']['total']}}</h2>
+<h4>Popularity : {{x['popularity']}}</h4>
+<form action="artist-analysis" method="post">
+    <button type="submit" name="analysis" value="{{x['id']}}">
+        Submit
+    </button>
+</form>
+<a href="https://open.spotify.com/artist/{{x['id']}}" target="_blank">
+    <button>Spotify Profile</button>
+</a>
+<br>
+<hr>
+{% endfor %}
+
+
+
+
+
+{% endblock %}

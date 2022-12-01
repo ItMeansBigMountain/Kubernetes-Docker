@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} </title>
+
+    <!-- imports -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/556f844f3f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+
+    <!-- integral static imports -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='base.css') }}">
+
+
+    {% block html_head %}{% endblock %}
+</head>
+
+<body>
+
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-sm  bg-dark  ">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/Dashboard"> Dashboard </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/player">Music Player</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/indivisual-album-display">Albums</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/indivisual-playlist-display">Playlists</a>
+            </li>
+        </ul>
+        <form class="form-inline ml-auto" action="search-results" method="post">
+            <input type="hidden" name="q_type" value="None">
+            <input class="form-control mr-sm-2" type="search" name="q" value="" placeholder="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+    </nav>
+
+
+
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+    <script src="{{ url_for('static',filename='base.js') }}"></script>
+</body>
+
+
+
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p>Find me on social media.</p>
+
+    <a href="" target="_blank">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    </a>
+
+    <a href="https://instagram.com/_trapistan" target="_blank">
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+    </a>
+
+    <a href="" target="_blank">
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+    </a>
+
+    <a href="https://www.twitter.com/nehauri" target="_blank">
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+    </a>
+
+    <a href="https://www.linkedin.com/in/affan-fareed-9b601873/" target="_blank">
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </a>
+
+    <p>Trapistan Zindabad</p>
+</footer>
+
+</html>

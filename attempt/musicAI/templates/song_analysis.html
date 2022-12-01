@@ -1,0 +1,560 @@
+{% extends "base.html" %}
+<!-- [CTRL + BAR SYMBOL]    will split page with same file!  -->
+
+{% block title %} {{content.stats['song_title']}} | {{content.stats['song_artist_name']}} !{% endblock %}
+
+
+
+
+{% block html_head %}
+<!-- custom style sheet -->
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='song_analysis.css') }}">
+
+<!-- graph js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+{% endblock %}
+
+
+
+
+
+<!-- content -->
+{% block content %}
+
+
+<h1>{{content.stats['song_title']}} | {{content.stats['song_artist_name']}}</h1>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- Data points -->
+<h6 class="w3-text-teal">
+    <i class="fa fa-calendar fa-fw w3-margin-right"></i>
+    BPM: <span class="w3-tag w3-teal w3-round"> {{ content.stats['tempo'] }} </span>
+</h6>
+
+<h6 class="w3-text-teal">
+    <i class="fa fa-calendar fa-fw w3-margin-right"></i>
+    Duration: <span class="w3-tag w3-teal w3-round"> {{ content.stats['duration_ms'] }} </span>
+</h6>
+
+<h6 class="w3-text-teal">
+    <i class="fa fa-calendar fa-fw w3-margin-right"></i>
+    Loudness: <span class="w3-tag w3-teal w3-round"> {{ content.stats['loudness'] }} </span>
+</h6>
+
+
+
+
+
+
+
+
+<!-- 
+
+BAR CHART
+<canvas id="barChart" width="50" height="50" ></canvas>
+
+
+
+
+PIE CHART
+{% if content.ai_response == true %}
+<canvas id="pieChart" width="25" height="25"  ></canvas>
+{% endif %}
+
+-->
+
+
+
+<!-- RESPONSIVE BREAKPOINTS -->
+<!--/////// NOTES//////
+     class="col-lg-6 col-mb-12"
+     on large resolution - use 6 columns
+     on medium or below resolution - use 12 columns
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-mb-12">
+            <!-- bar chart -->
+            <canvas id="barChart" width="50" height="50" ></canvas>
+            
+            {% if content.ai_response == true %}
+            <!-- pie chart -->
+            <canvas id="pieChart" width="50" height="50"  ></canvas>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- WATSON AI INFO -->
+{% if content.ai_response == true %}
+
+
+
+<!-- SENTIMENT FREQUENCIES -->
+<div class="btn-group">
+    
+    <!-- BUTTON  -->
+    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sentiment Frequencies
+    </button>
+    
+    <!-- Each item in dropdown -->
+    <div class="dropdown-menu" >
+        <h6 class="dropdown-header">Analysis about how the ai thinks the context surrounding nouns outputs sentiment. Displaying the counted nouns' sentiment rating. </h6>
+        {% for key, value in content.stats['ai']['nlu']['sentiment_frequencies'].items() %}
+        <div class="dropdown-item">
+            {{key}} : {{value}}
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+<!-- CONCEPT FREQUENCIES -->
+<h1>Concept Frequencies</h1>
+<div class="row">
+
+    <!-- Left side -->
+    <div class="col-4">
+      <div class="list-group" id="concept_list" role="tablist">
+          
+        <!-- tab title -->
+        {% for key, value in content.stats['ai']['nlu']['conceptfrequencies'].items() %}
+        <a class="list-group-item list-group-item-action" id="{{key}}_tab_label" data-toggle="list" href="#{{key}}" role="tab" aria-controls="{{key}}_tab_label"   onclick="conceptClick( {{loop.index}} )">
+            {{key}}
+        </a>
+        {%endfor%}
+
+      </div>
+    </div>
+
+    
+    
+    <!-- right side -->
+    <div class="col-8">
+
+      <div class="tab-content" id="nav-tabContent">
+        <ul>
+            <!-- tab info display contents-->
+            {% for key, value in content.stats['ai']['nlu']['conceptfrequencies'].items() %}
+            <div class="tab-pane fade " id="{{loop.index}}" role="tabpanel" aria-labelledby="{{key}}">
+                {% for item in value %}
+                    <li>
+                        {% if item != [] %}
+                        {{item}}
+                        {% else%}
+                        None
+                        {% endif %}
+                    </li>
+                {%endfor%}
+            </div>
+        </ul>
+            {%endfor%}
+            
+        </div>
+    </div>
+
+
+    
+
+</div>
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- SUBJECT FREQUENCIES -->
+<h1>Subject Frequencies</h1>
+
+<table class="table table-bordered table-dark">
+
+    <thead>
+      <tr>
+
+
+        <th scope="col">Tense</th>
+        <th scope="col">Subject</th>
+
+        
+        
+
+      </tr>
+    </thead>
+
+
+
+    <tbody>
+
+        {% for key, value in content.stats['ai']['nlu']['subjectsfrequencies'].items() %}
+      <tr>
+        <th scope="row">{{key}}</th>
+        <td>{{value}}</td>
+      </tr>
+      {%endfor%}
+
+      
+
+
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  
+  <!-- KEYWORD FREQUENCIES -->
+  <h1>Keyword Frequencies</h1>
+  
+  <table class="table table-bordered table-dark">
+  
+      <thead>
+        <tr>
+  
+  
+          <th scope="col">Emotion</th>
+          <th scope="col">Content</th>
+  
+          
+          
+  
+        </tr>
+      </thead>
+  
+  
+  
+      <tbody>
+  
+          {% for key, value in content.stats['ai']['nlu']['keywordfrequencies'].items() %}
+        <tr>
+          <th scope="row">{{key}}</th>
+          <td>{{value}}</td>
+        </tr>
+        {%endfor%}
+  
+        
+  
+  
+      </tbody>
+    </table>
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    
+    <!-- ENTITY FREQUENCIES -->
+    <h1>Entity Frequencies</h1>
+    
+    <table class="table table-bordered table-dark">
+    
+        <thead>
+          <tr>
+    
+    
+            <th scope="col">Emotion</th>
+            <th scope="col">Content</th>
+    
+            
+            
+    
+          </tr>
+        </thead>
+    
+    
+    
+        <tbody>
+    
+            {% for key, value in content.stats['ai']['nlu']['entityfrequencies'].items() %}
+          <tr>
+            <th scope="row">{{key}}</th>
+            <td>{{value}}</td>
+          </tr>
+          {%endfor%}
+    
+          
+    
+    
+        </tbody>
+      </table>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      
+      <!-- RELATIONS FREQUENCIES -->
+      <h1>Relations Frequencies</h1>
+      
+      <table class="table table-bordered table-dark">
+      
+          <thead>
+            <tr>
+      
+      
+              <th scope="col">Event</th>
+              <th scope="col">Content</th>
+      
+              
+              
+      
+            </tr>
+          </thead>
+      
+      
+      
+          <tbody>
+      
+              {% for key, value in content.stats['ai']['nlu']['relationsfrequencies'].items() %}
+            <tr>
+              <th scope="row">{{key}}</th>
+              <td>{{value}}</td>
+            </tr>
+            {%endfor%}
+      
+            
+      
+      
+          </tbody>
+        </table>
+      
+
+
+
+
+      <p>
+        {{content.stats['ai']['lyrics']}}
+      </p>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+{% endif %}
+
+
+
+
+<!-- CHART JS -->
+<script>
+
+    // song_stats =   {{ content.stats | tojson }} 
+    spotty_labels = {{ content.spotty_chart_labels | tojson }}
+    spotty_data = {{ content.spotty_chart_data | tojson }}
+
+    ai_response = {{ content.ai_response | tojson }}
+
+
+    // Bar chart
+    new Chart(document.getElementById("barChart"), {
+        type: 'bar',
+        data: {
+            labels: spotty_labels
+            ,
+            datasets: [
+                {
+                    label: '',
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#c45850", "#c45850"],
+                    data: spotty_data
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Spotify Music Details'
+            },
+            responsive: true
+            //responsive: false
+        }
+    });
+
+    // Pie chart
+    if (ai_response)
+    {
+        ai_emotion_labels = {{ content.emotionLabels | tojson }}
+        ai_emotion_values = {{ content.emotionValues | tojson }}
+
+    new Chart(document.getElementById("pieChart"), {
+        //type: 'doughnut',
+        type: 'pie',
+        data: {
+            labels: ai_emotion_labels,
+            datasets: [{
+                label: '',
+                data: ai_emotion_values,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(144,238,144)',
+                    'rgb(148,0,211)',
+                    'rgb(255, 205, 86)',
+                    'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Lyric Sentiment Emotions'
+            },
+            //responsive: false
+            responsive: true
+        }
+    });
+    
+
+    }
+
+
+
+
+</script>
+
+
+<script>
+    let  last = null;
+    function conceptClick(key)
+    {
+        document.getElementById(key).className = "tab-pane fade show active";
+        if (last != null)
+        {
+            document.getElementById(last).className = "tab-pane fade";
+            last = key;
+        }
+        else{
+            last = key;
+            //document.getElementById(last).className = "tab-pane fade";
+        }
+    }
+
+</script>
+
+<!-- <script>
+    $('#concept_list a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+      })
+</script> -->
+
+
+
+
+
+{% endblock %}
