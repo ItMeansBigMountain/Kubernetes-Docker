@@ -6,22 +6,23 @@
     - write: " docker image build -t music-ai . "
 
 - build continer
+    - write: " docker run --rm -d --network=host  IMAGE_NAME:latest  "
     - write: " docker run --rm -d --network=host  music-ai:latest  "
-
-
-- ID created with container
-    - docker logs CONTAINER_ID
-
-
+    - ID created with container
 
 [ VSCODE HAS A GREAT DOCKER EXTENTION TO GLANCE AT ENV ]
 
-# Display all Images
+
+
+
+### Display Container Logs
+- docker logs CONTAINER_ID
+
+### Display all Images
 - docker images
 
-# Display all Running Containers
+### Display all Running Containers
 - docker container ls
 
-
-# FREE ALL LOOSE UNUSED IMAGES AND CONTAINERS
+### FREE ALL LOOSE UNUSED IMAGES AND CONTAINERS
 - docker system prune
