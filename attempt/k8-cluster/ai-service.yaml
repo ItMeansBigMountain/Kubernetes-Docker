@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: music-ai-service
+  namespace: sounddoe
+  labels:
+    app: music-ai
+
+# SPECIFICATIONS
+spec:
+  # type: NodePort
+  type: LoadBalancer
+
+  # SELECT PODS TO APPLY SERVICE TO
+  selector:
+    app: music-ai
+
+  ports:
+    - protocol: TCP
+      # request comes into cluster
+      port: 8080
+
+      # route to target container with open port
+      targetPort: 8080

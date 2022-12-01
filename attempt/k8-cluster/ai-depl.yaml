@@ -1,0 +1,47 @@
+# DATABASE POD
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: music-ai-deployment
+  namespace: sounddoe
+  labels:
+    app: music-ai
+
+# SPECIFICATIONS
+spec:
+  # MATCHING ALL LABELS TO CREATE THESE PODS
+  replicas: 1
+  selector:
+    matchLabels:
+      app: music-ai
+
+  # POD
+  template:
+    metadata:
+      labels:
+        app: music-ai
+    spec:
+      containers:
+        - name: music-ai-db
+          image: music-ai:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+
+          # CREATE ENV VARIABLES
+          # DIFFERENT IMAGES FROM THE HUB ARE KNOWN TO HAVE ENV VARIABLES THAT ALLOW THEIR USECASE TO RUN
+          # env:
+          #   - name:  music-ai_INITDB_ROOT_USERNAME
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: music-ai-secret
+          #         key: music-ai-user
+          #   - name:  music-ai_INITDB_ROOT_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: music-ai-secret
+          #         key: music-ai-password
