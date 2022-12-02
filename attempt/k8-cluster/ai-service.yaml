@@ -22,3 +22,6 @@ spec:
 
       # route to target container with open port
       targetPort: 8080
+
+      # # open on kubernetes nodes to which app is accessable
+      nodePort: 30101
