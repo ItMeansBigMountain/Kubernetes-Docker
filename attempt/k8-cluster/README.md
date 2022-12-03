@@ -18,10 +18,13 @@
 
     - minikube image build -t <IMAGE_NAME> .
 
-    - apply all config files
+    - APPLY all config files
         - [image:latest]: ensure docker image has the same name as your desired image 
 
-    - current namespace
+    - EXPOSE service port:
+        - kubectl expose deployment DEPLOYMENT_NAME --type=Loadbalancer --name=SERVICE_NAME
+
+    - CHECK current namespace
         - kubens <NAMESPACE>
 
      - minikube service struct

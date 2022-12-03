@@ -38,7 +38,8 @@ helper.py will scan dir for files with kubernetes component naming convention...
     - apply service
     - apply ingress
 
-
+ - MINICUBE 
+        - minikube service SERVICE_NAME
 
 
 

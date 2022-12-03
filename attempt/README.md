@@ -1,8 +1,4 @@
-# make a cluster steps
-- ...
-
-
-# make a container steps
+# Container Steps
 - Have a fully running application
 
 - build image
@@ -16,6 +12,8 @@
 
 [ VSCODE HAS A GREAT DOCKER EXTENTION TO GLANCE AT ENV ]
 
+# Cluster Steps
+- ...
 
 
 
@@ -28,5 +26,5 @@
 ### Display all Running Containers
 - docker container ls
 
-### FREE ALL LOOSE UNUSED IMAGES AND CONTAINERS
+### FREE LOOSE IMAGES & CONTAINERS
 - docker system prune
