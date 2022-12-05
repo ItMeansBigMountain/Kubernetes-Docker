@@ -1701,7 +1701,7 @@ def fetch_meme(text0 , text1):
 
 
 
-# application.run(host = '0.0.0.0' , port = 8080)
-application.run( port = 8080)
+application.run(host = '0.0.0.0' , port = 8080)
+# application.run( port = 8080)
 
 

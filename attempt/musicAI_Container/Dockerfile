@@ -11,6 +11,9 @@ ADD . /app
 # run command in current dir
 RUN pip install -r musicAI/requirements.txt
 
+# open ports
+EXPOSE 80
+EXPOSE 8080
 
 CMD [ "python3", "musicAI/musicAI.py" ]
 

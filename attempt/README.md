@@ -8,6 +8,8 @@
 - build continer
     - write: " docker run --rm -d --network=host  IMAGE_NAME:latest  "
     - write: " docker run --rm -d --network=host  music-ai:latest  "
+    - write: " docker run -it -p 8080:8080 -d music-ai:latest  "
+    
     - ID created with container
 
 [ VSCODE HAS A GREAT DOCKER EXTENTION TO GLANCE AT ENV ]
