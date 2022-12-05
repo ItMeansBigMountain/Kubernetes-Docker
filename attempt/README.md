@@ -16,10 +16,57 @@
     
     - ID created with container
 
+
+
 [ VSCODE HAS A GREAT DOCKER EXTENTION TO GLANCE AT ENV ]
 
+
+
+
 # Cluster Steps
-- ...
+- MINIKUBE SINGLE-NODE CLUSTER 
+    - minikube start
+        
+    - minikube image load <IMAGE_NAME>
+
+    - minikube image build -t <IMAGE_NAME> .
+
+    - APPLY all config files
+        - [image:latest]: ensure docker image has the same name as your desired image 
+
+    - EXPOSE service port:
+        - kubectl expose deployment DEPLOYMENT_NAME --type=Loadbalancer --name=SERVICE_NAME
+
+    - CHECK current namespace
+        - kubens <NAMESPACE>
+
+     - minikube service struct
+        - minikube service <SERVICE_NAME>
+        - minikube service list
+
+    - peek single-node enviroment
+        - kubect get all
+    
+
+
+
+
+- MICROSOFT AZURE
+    - ...
+
+
+
+
+
+
+- KUBECTX MULTICLUSTER 
+    - ...
+
+
+
+
+
+
 
 
 

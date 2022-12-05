@@ -5,7 +5,7 @@
         - docker image build -t <IMAGE_NAME> . 
     
     [DELETE]: ensure image runs right using it as a container 
-    - docker run --rm -d --network=host  <IMAGE_NAME:latest>
+    - docker run -it -p 8080:8080 -d <IMAGE_NAME:latest>
     - docker logs <IMAGE_ID>
     - docker stop  <CONTAINER_ID>
     - docker rm  <CONTAINER_ID>
@@ -29,6 +29,7 @@
 
      - minikube service struct
         - minikube service <SERVICE_NAME>
+        - minikube service list
 
     - peek single-node enviroment
         - kubect get all
