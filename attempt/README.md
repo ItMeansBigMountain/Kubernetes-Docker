@@ -6,9 +6,13 @@
     - write: " docker image build -t music-ai . "
 
 - build continer
-    - write: " docker run --rm -d --network=host  IMAGE_NAME:latest  "
-    - write: " docker run --rm -d --network=host  music-ai:latest  "
-    - write: " docker run -it -p 8080:8080 -d music-ai:latest  "
+    
+    - EXTEND TO LOCAL NETWORK
+        - write: " docker run --rm -d --network=host  IMAGE_NAME:latest  "
+        - write: " docker run --rm -d --network=host  music-ai:latest  "
+    
+    - EXPOSED PORTS
+        - write: " docker run -it -p 8080:8080 -d music-ai:latest  "
     
     - ID created with container
 
