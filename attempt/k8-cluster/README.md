@@ -38,10 +38,21 @@
 
 
 
-- MICROSOFT AZURE
-    - ...
+# MICROSOFT AZURE
+- az login
+- docker image build -t music-ai .
+- az group create -l centralus -n demo
+- az acr create --resource-group demo --name sosaioyama --sku Basic
+- az acr login --name sosaioyama
+- az acr list --resource-group demo --query "[].{acrLoginServer:loginServer}" --output table
+- docker tag music-ai:latest sosaioyama.azurecr.io/music-ai:v1
+- docker push sosaioyama.azurecr.io/music-ai:v1
+- az acr repository list --name sosaioyama --output table
+- az aks create --resource-group demo --name music-ai-cluster --node-count 2 --generate-ssh-keys --attach-acr sosaioyama
+- az aks get-credentials --resource-group demo --name music-ai-cluster
+- kubectl get nodes
+- python3 helper.py
+- kubens sounddoe
+- kubectl get all
 
 
-
-- KUBECTX MULTICLUSTER 
-    - ...
