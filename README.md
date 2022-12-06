@@ -25,6 +25,8 @@ helper.py will scan dir for files with kubernetes component naming convention...
 
 
 # STEPS TO DEPLOY CLUSTER
+- create docker images
+- tag & push to cloud provider registry
 - create cluster 
 - create secrets and config files
 - create deployments of pods
@@ -38,8 +40,16 @@ helper.py will scan dir for files with kubernetes component naming convention...
     - apply service
     - apply ingress
 
- - MINICUBE 
-        - minikube service SERVICE_NAME
+ - * MINICUBE 
+        - minikube makes you build images and serivces using their commands
+        
+
+ - * AZURE CLOUD
+        - tag image
+        - push to azure container registry
+        - login using credentials command from AKS
+        - use kubectl with namespace to use azure kubernetes
+
 
 
 
