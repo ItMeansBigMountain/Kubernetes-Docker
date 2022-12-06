@@ -25,8 +25,8 @@ spec:
       containers:
           # imagePullPolicy set to never - [LOCAL DOCKER IMAGES]
         - name: music-ai
-          image: music-ai:latest
-          imagePullPolicy: Never
+          image: sosaioyama.azurecr.io/music-ai:v1
+          # imagePullPolicy: Never
           resources:
             limits:
               memory: "128Mi"
